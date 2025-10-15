@@ -55,9 +55,10 @@ void ACC_PlayerCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
 
-	if (GetAbilitySystemComponent())
+	if (GetAbilitySystemComponent() && HasAuthority())
 	{
 		GetAbilitySystemComponent()->InitAbilityActorInfo(GetPlayerState(),this);
+		GiveStartupAbilities();
 	}
 }
 
