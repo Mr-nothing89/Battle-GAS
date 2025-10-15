@@ -10,6 +10,7 @@
  * 
  */
 
+struct FGameplayTag;
 class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
@@ -45,4 +46,6 @@ private:
 	void Look(const FInputActionValue& Value);
 
 	void Primary();
+
+	void ActivateAbility(const FGameplayTag& AbilityTag) const;
 };
