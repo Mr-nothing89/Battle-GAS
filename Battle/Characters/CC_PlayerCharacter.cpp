@@ -3,6 +3,8 @@
 
 #include "CC_PlayerCharacter.h"
 
+#include "AbilitySystemComponent.h"
+#include "Battle/Player/CC_PlayerState.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -38,5 +40,33 @@ ACC_PlayerCharacter::ACC_PlayerCharacter()
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>("FollowCamera");
 	FollowCamera->SetupAttachment(CameraBoom,USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
+}
+
+UAbilitySystemComponent* ACC_PlayerCharacter::GetAbilitySystemComponent() const
+{
+	if (ACC_PlayerState* CCPlayerState = Cast<ACC_PlayerState>(GetPlayerState()))
+	{
+		return CCPlayerState->GetAbilitySystemComponent();
+	}
+	return nullptr;
+}
+
+void ACC_PlayerCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+
+	if (GetAbilitySystemComponent())
+	{
+		GetAbilitySystemComponent()->InitAbilityActorInfo(GetPlayerState(),this);
+	}
+}
+
+void ACC_PlayerCharacter::OnRep_PlayerState()
+{
+	Super::OnRep_PlayerState();
+	if (GetAbilitySystemComponent())
+	{
+		GetAbilitySystemComponent()->InitAbilityActorInfo(GetPlayerState(),this);
+	}
 }
 
