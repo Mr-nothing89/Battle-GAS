@@ -3,7 +3,7 @@
 
 #include "CC_EnemyCharacter.h"
 
-#include "AbilitySystemComponent.h"
+#include "Battle/AbilitySystem/CC_AbilitySystemComponent.h"
 
 
 // Sets default values
@@ -12,7 +12,7 @@ ACC_EnemyCharacter::ACC_EnemyCharacter()
 	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
-	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>("AbilitySystemComponent");
+	AbilitySystemComponent = CreateDefaultSubobject<UCC_AbilitySystemComponent>("AbilitySystemComponent");
 	AbilitySystemComponent->SetIsReplicated(true);
 	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
 }
