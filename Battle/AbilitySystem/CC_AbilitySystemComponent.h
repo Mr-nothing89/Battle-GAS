@@ -6,7 +6,7 @@
 #include "AbilitySystemComponent.h"
 #include "CC_AbilitySystemComponent.generated.h"
 
-
+	
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class BATTLE_API UCC_AbilitySystemComponent : public UAbilitySystemComponent
 {
