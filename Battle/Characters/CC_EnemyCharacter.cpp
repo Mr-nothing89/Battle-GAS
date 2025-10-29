@@ -38,6 +38,7 @@ void ACC_EnemyCharacter::BeginPlay()
 	if (HasAuthority())
 	{
 		GiveStartupAbilities();
+		InitializeAttributes();
 	}
 }
 
